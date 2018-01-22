@@ -1,12 +1,14 @@
-FROM php:latest
+FROM php:7.1
 
 MAINTAINER Jakub Janata <jakubjanata@gmail.com>
 
-RUN apt-get update && apt-get install -y unzip wget mysql-client postgresql-client git
+RUN apt-get update \
+    && mkdir -p /usr/share/man/man1 \
+    && mkdir -p /usr/share/man/man7 \
+    && apt-get install -y unzip wget mysql-client postgresql-client git gnupg zlib1g libpng-dev nodejs
 
 # Node.js
-RUN curl -sL https://deb.nodesource.com/setup_7.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install nodejs -y
 RUN command -v node
 RUN command -v npm
@@ -22,7 +24,7 @@ RUN apt-get install -y libpq-dev \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql
 
 # Install PHP extensions
-RUN docker-php-ext-install zip
+RUN docker-php-ext-install zip gd
 
 # Memory Limit
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
