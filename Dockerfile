@@ -8,7 +8,7 @@ RUN apt-get update \
     && apt-get install -y unzip wget mysql-client postgresql-client git gnupg zlib1g libpng-dev nodejs
 
 # Node.js
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install nodejs -y
 RUN command -v node
 RUN command -v npm
