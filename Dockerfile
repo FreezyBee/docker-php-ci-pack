@@ -24,7 +24,7 @@ RUN apt-get install -y libpq-dev \
     && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql
 
 # Install PHP extensions
-RUN docker-php-ext-install zip gd
+RUN docker-php-ext-install zip gd exif mbstring
 
 # Install APCu
 RUN pecl install apcu
