@@ -22,7 +22,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 # Install Mysql + Postgre PDO + extensions
 RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
     docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql && \
-    docker-php-ext-install zip gd exif mbstring
+    docker-php-ext-install zip gd exif mbstring bcmath
 
 # Install APCu
 RUN pecl install apcu && \
