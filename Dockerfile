@@ -5,7 +5,7 @@ MAINTAINER Jakub Janata <jakubjanata@gmail.com>
 RUN apt-get update && \
     mkdir -p /usr/share/man/man1 && \
     mkdir -p /usr/share/man/man7 && \
-    apt-get install -y unzip wget mysql-client postgresql-client git gnupg zlib1g libpng-dev libzip-dev libpq-dev
+    apt-get install -y unzip wget mysql-client postgresql-client git gnupg zlib1g libpng-dev libzip-dev libpq-dev libmagickwand-dev
 
 # Node.js
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
@@ -24,9 +24,10 @@ RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
     docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql && \
     docker-php-ext-install zip gd exif mbstring bcmath
 
-# Install APCu
-RUN pecl install apcu && \
-    echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini
+# Install APCu + imagick
+RUN pecl install apcu imagick && \
+    echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini && \
+    echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini
 
 # Memory Limit
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
