@@ -25,9 +25,10 @@ RUN docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
     docker-php-ext-install zip gd exif mbstring bcmath
 
 # Install APCu + imagick
-RUN pecl install apcu imagick && \
+RUN pecl install apcu imagick redis && \
     echo "extension=apcu.so" > /usr/local/etc/php/conf.d/apcu.ini && \
-    echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini
+    echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini && \
+    echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # Memory Limit
 RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
