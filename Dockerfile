@@ -3,9 +3,7 @@ FROM php:7.3
 MAINTAINER Jakub Janata <jakubjanata@gmail.com>
 
 RUN apt-get update && \
-    mkdir -p /usr/share/man/man1 && \
-    mkdir -p /usr/share/man/man7 && \
-    apt-get install -y unzip wget mysql-client postgresql-client git gnupg zlib1g libpng-dev libzip-dev libpq-dev libmagickwand-dev
+    apt-get install -y unzip wget git gnupg zlib1g libpng-dev libzip-dev libpq-dev libmagickwand-dev
 
 # Node.js
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
