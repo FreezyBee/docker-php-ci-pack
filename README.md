@@ -1,8 +1,6 @@
 Docker PHP Continuous Integration Pack
 ======================================
 
-- php:latest
-- git
-- mysql client
-- postgresql client
-- pdo pdo_mysql pdo_pgsql
+```
+docker pull janatjak/php-ci-pack:7.4
+```
