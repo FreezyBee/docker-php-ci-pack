@@ -1,8 +1,9 @@
-FROM khs1994/php:7.4.11-cli-alpine
+FROM khs1994/php:7.4.19-cli-alpine
 
 MAINTAINER Jakub Janata <jakubjanata@gmail.com>
 
 RUN apk add --no-cache --update yarn python2 python3 git imagemagick mysql-client openssh-client \
+    php7-phpdbg \
     autoconf \
     automake \
     bash \
