@@ -28,11 +28,9 @@ RUN pecl install apcu imagick redis && \
     echo "extension=imagick.so" > /usr/local/etc/php/conf.d/imagick.ini && \
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
-# Memory Limit
-RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
-
 # Install composer
-RUN wget https://getcomposer.org/composer.phar -q && \
-    mv composer.phar /usr/local/bin/composer && \
-    chmod a+x /usr/local/bin/composer && \
-    composer --version
+RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini && \
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    php -r "unlink('composer-setup.php');" && \
+    composer global clear-cache
