@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y unzip wget git gnupg zlib1g libpng-dev libzip-dev libpq-dev libmagickwand-dev
 
 # Node.js
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get install nodejs -y && \
     command -v node && \
     command -v npm
@@ -35,5 +35,4 @@ RUN echo "memory_limit=-1" > $PHP_INI_DIR/conf.d/memory-limit.ini
 RUN wget https://getcomposer.org/composer.phar -q && \
     mv composer.phar /usr/local/bin/composer && \
     chmod a+x /usr/local/bin/composer && \
-    composer --version && \
-    composer global require hirak/prestissimo
+    composer --version
