@@ -11,6 +11,7 @@ RUN apk add --no-cache --update yarn python2 python3 git imagemagick mysql-clien
     libjpeg-turbo-dev \
     libpng-dev \
     make \
+    pcre2-dev \
     nasm && \
     apk add --no-cache --update --virtual .build-deps $PHPIZE_DEPS imagemagick-dev && \
     pickle install imagick && \
